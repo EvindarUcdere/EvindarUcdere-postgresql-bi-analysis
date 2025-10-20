@@ -23,7 +23,7 @@ DVD Rental: Used to practice customer behavior and rental pattern analysis.
 📂 Repository Structure
 Queries are organized into folders by database.
 
-/
+/ 
 ├── northwind_analysis/
 │   ├── ... (query files)
 ├── dvdrental_analysis/

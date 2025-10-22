@@ -15,6 +15,8 @@ Advanced JOINs: Using LATERAL JOIN as a performance alternative for "Top-N-per-G
 
 Aggregation: Using GROUP BY, HAVING, and CASE statements for standard business reporting.
 
+PL/pgSQL Programming: Implementing stored functions that include conditional logic (IF/ELSE), loops, and exception handling to automate database operations and enhance procedural control.
+
 🗄️ Databases Used
 Northwind: Used to practice sales, employee, and product analysis.
 

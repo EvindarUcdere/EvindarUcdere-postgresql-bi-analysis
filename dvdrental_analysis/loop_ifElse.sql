@@ -11,9 +11,10 @@ UPDATE products SET stock_quantity = 10 WHERE id = 1;
 UPDATE products SET stock_quantity = 50 WHERE id = 2;
 
 
---urun_stok_degeri(urun_id INTEGER) adında bir fonksiyon yaz.
---Bu fonksiyon, o ürünün price * stock_quantity (toplam stok değerini) 
---hesaplayıp NUMERIC olarak döndürsün.
+-- Function: urun_stok_degeri(urun_id INTEGER)
+-- This function calculates the total stock value of a product
+-- by multiplying its price with stock_quantity and returns it as NUMERIC.
+
 
 Create or replace function urun_stok_degeri(urun_id INTEGER)
 returns numeric (10,2)
@@ -38,7 +39,7 @@ $$ LANGUAGE plpgsql;
 
 
 ----------  if-else   -----------
---else if ile br ürünün faiyatının durumunu anlam (pahalı mı ucuz mu vs)
+
 
 CREATE OR REPLACE FUNCTION urun_durumu(urun_id integer)
 RETURNS TEXT 
@@ -82,8 +83,7 @@ SELECT urun_durumu(999); -- (Yok) -> 'Ürün bulunamadı!'
 
 
 ------------------	loop	--------------------------
-
---bir tablo üzerindeki bütün satırlar için işlem yapmak istiyrosak FOR IN SELECT   lullanırız 
+--we use a FOR ... IN SELECT loop in PL/pgSQL. 
 
 CREATE OR REPLACE FUNCTION tum_stok_degerlerini_goster()
 RETURNS VOID 
@@ -114,41 +114,4 @@ $$ LANGUAGE plpgsql ;
 
 SELECT tum_stok_degerlerini_goster();
 
---------------  EXCEPTION  --------------
 
---bizim için exception çok önemli programınızın neden çalışmadıgını anlaamaız sağlar
-
-
-CREATE OR REPLACE FUNCTION urun_bilgisi_guvenli_getir(urun_id INTEGER)
-RETURNS TEXT 
-AS $$
-DECLARE 
-   urun_adi VARCHAR;
-
-BEGIN 
-
-  BEGIN 
-     SELECT name 
-	 INTO STRICT urun_adi
-	 FROM products
-	 WHERE id =urun_id ;
-
-	 RETURN 'Ürün Adi:'  || urun_adi;
-	 
-
-   EXCEPTION 
-      WHEN NO_DATA_FOUND THEN 
-	    RETURN 'HATA: Bu ID''de bir ürün bulunamadı!';
-
-
-	  WHEN TOO_MANY_ROWS THEN 
-	    RETURN 'HATA: Beklenmedik bir durum , birden fazla ürün bulundu!'; 
-
-	END;
-END;
-$$ LANGUAGE plpgsql;
-
-
-
-SELECT urun_bilgisi_guvenli_getir(1);   -- Çıktı: 'Ürün Adı: Laptop'
-SELECT urun_bilgisi_guvenli_getir(999);

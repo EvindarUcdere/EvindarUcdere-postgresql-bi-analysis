@@ -17,6 +17,9 @@ Aggregation: Using GROUP BY, HAVING, and CASE statements for standard business r
 
 PL/pgSQL Programming: Implementing stored functions that include conditional logic (IF/ELSE), loops, and exception handling to automate database operations and enhance procedural control.
 
+Triggers: Designed automatic database triggers to handle real-time actions — such as updating timestamps (last_updated_at) on record changes and archiving deleted rows into a backup table — ensuring data integrity and auditability.
+
+
 🗄️ Databases Used
 Northwind: Used to practice sales, employee, and product analysis.
 

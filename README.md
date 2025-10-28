@@ -19,6 +19,9 @@ PL/pgSQL Programming: Implementing stored functions that include conditional log
 
 Triggers: Designed automatic database triggers to handle real-time actions — such as updating timestamps (last_updated_at) on record changes and archiving deleted rows into a backup table — ensuring data integrity and auditability.
 
+Query Optimization:
+Used EXPLAIN ANALYZE to examine execution plans, compare Sequential Scans and Index Scans, and measure real query performance.
+Created indexes on frequently queried columns (e.g., total_amount, sale_date) to significantly reduce execution time and improve efficiency on large datasets.
 
 🗄️ Databases Used
 Northwind: Used to practice sales, employee, and product analysis.
@@ -33,6 +36,11 @@ Queries are organized into folders by database.
 │   ├── ... (query files)
 ├── dvdrental_analysis/
 │   ├── ... (query files)
+│   
+├── trigger/
+│   ├── ...(query filse)
+├── Query-Optimization/
+│   ├── ...(query filse)
 └── README.md
 📊 Objective
 To perform realistic BI-style analysis and gain a deeper, practical understanding of PostgreSQL’s analytical features.
